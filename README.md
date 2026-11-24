@@ -88,7 +88,7 @@ The estimates are entered directly from the output of `analytic_code.R` (`rsv_ho
 
 Analyses were run in R version 4.4.2.
 
-Bootstrap estimation runs in parallel with `future::plan(future::multisession, workers = 4)`. Change `workers` to suit your machine. Each model with 1,000 bootstrap replicates can take [X minutes/hours] to run.
+Bootstrap estimation runs in parallel with `future::plan(future::multisession, workers = 4)`. Change `workers` to suit your machine.
 
 ## How to run
 
