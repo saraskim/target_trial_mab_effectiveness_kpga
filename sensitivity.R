@@ -19,7 +19,7 @@ analysis_data <- readRDS()
 # -- RSV hospitalization
 future::plan(future::multisession, workers = 4)
 start <- Sys.time()
-rsv_hosp_immune7_fit <- nomatch(data = analysis_new, 
+rsv_hosp_immune7_fit <- nomatch(data = analysis_data, 
                         outcome_time = "fu_time_rsv_hosp",
                         outcome_status = "rsv_hosp",
                         exposure = "mab_binary",
@@ -42,7 +42,7 @@ rsv_hosp_immune7_fit$estimates
 # -- medically-attended rsv 
 future::plan(future::multisession, workers = 4)
 start <- Sys.time()
-rsv_ma_immune7_fit <- nomatch(data = analysis_new, 
+rsv_ma_immune7_fit <- nomatch(data = analysis_data, 
                                 outcome_time = "fu_time_rsv_ma",
                                 outcome_status = "rsv_ma",
                                 exposure = "mab_binary",
@@ -65,7 +65,7 @@ rsv_ma_immune7_fit$estimates
 
 
 # ---------- run to 90 days ---------# 
-analysis_new_runout <- analysis_new %>%
+analysis_new_runout <- analysis_data %>%
   mutate(new_last_study_date = as.Date('2026-03-16'),
          new_date_end_rsv_hosp = pmin(new_last_study_date, first_rsv_hosp_date, overall_enr_end, na.rm = TRUE),
          new_date_end_rsv_ma = pmin(new_last_study_date, first_rsv_ma_date, overall_enr_end, na.rm = TRUE),
